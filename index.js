@@ -25,6 +25,7 @@ async function run() {
     const orderCollection = client.db("Chiaseed-we").collection("order")
     const headerDataCollection = client.db("Chiaseed-we").collection("header-Data")
     const NutritionalValueCollection = client.db("Chiaseed-we").collection("nutritional-value")
+    const productDataCollection = client.db("Chiaseed-we").collection("product-Data")
 
 
     app.post("/order", async (req, res) => {
@@ -44,9 +45,38 @@ async function run() {
       res.send(result)
         
     })
+    // header Section get
+
+    app.get("/headerGet", async (req, res) => {
+
+      const query = {};
+      const allData = await headerDataCollection.find(query).toArray();
+      res.send(allData);
+       
+    })
+
+    // product post
+
+    app.post("/product", async (req, res) => {
+
+       const productData = req.body;
+       const result = await productDataCollection.insertOne(productData)
+       res.send(result)
+
+    })
+
+    // product get
+
+    app.get("/productGet", async (req, res) => {
+       
+      const query = {}
+      const productData = await productDataCollection.find(query).toArray()
+      res.send(productData)
+
+    })
 
     
-    // ChiaseedNutritionalValue post
+    // Chiaseed NutritionalValue post
 
     app.post("/nutritionalValue", async (req, res) => {
        
