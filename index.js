@@ -35,6 +35,17 @@ async function run() {
       res.send(result)
 
     })
+     
+    // order get
+
+    app.get('/orderGet', async(req, res) => {
+
+      const query = {};
+      const allData = await orderCollection.find(query).toArray();
+      res.send(allData);
+
+    })
+
 
     // header Section post
 
@@ -69,11 +80,12 @@ async function run() {
 
     app.get("/productGet", async (req, res) => {
        
-      const query = {}
-      const productData = await productDataCollection.find(query).toArray()
-      res.send(productData)
+      const query = {};
+      const allData = await productDataCollection.find(query).toArray();
+      res.send(allData);
 
     })
+    
 
     
     // Chiaseed NutritionalValue post
